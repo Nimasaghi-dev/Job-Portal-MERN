@@ -10,6 +10,9 @@ const errorHandler = require("./middleware/error");
 
 const port = process.env.PORT || 9000;
 
+// import routes
+const authRoutes = require('./routes/authRoutes');
+
 // DB connection
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
@@ -35,8 +38,11 @@ app.use(cors());
 // Error handler middleware
 app.use(errorHandler);
 
-// Routes
-// Add your routes here
+// Routes middleware
+// app.get('/', (req , res) => {
+//     res.send('Hello from express');
+// })
+app.use("/api" , authRoutes);
 
 // Start the server
 app.listen(port, () => {
