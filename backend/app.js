@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 var cors = require('cors');
 const cookieParser = require('cookie-parser');
+const errorHandler = require("./middleware/error");
 
 const port = process.env.PORT || 9000;
 
@@ -30,6 +31,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors());
+
+// Error handler middleware
+app.use(errorHandler);
 
 // Routes
 // Add your routes here
